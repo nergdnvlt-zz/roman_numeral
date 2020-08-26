@@ -1,7 +1,8 @@
 class RomanNumeral
     attr_reader :values
     
-    def initialize()
+    def initialize(roman_num_input)
+        @roman_num = roman_num_input
         @values = { 
             'I': 1,
             'V': 5,
