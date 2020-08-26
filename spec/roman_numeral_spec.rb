@@ -20,5 +20,17 @@ describe 'RomanNumeral' do
             expect(roman_numeral.values[:D]).to eq(500)
             expect(roman_numeral.values[:M]).to eq(1000)
         end
+
+        it 'splits the roman numeral correctly' do
+            roman_numeral = RomanNumeral.new('II')
+
+            expect(roman_numeral.roman_num_arr).to eq(['I', 'I'])
+        end
+
+        it 'splits a different roman numeral correctly' do
+            roman_numeral = RomanNumeral.new('MVCII')
+
+            expect(roman_numeral.roman_num_arr).to eq(['M', 'V, 'C', 'I', 'I'])
+        end
     end
 end
