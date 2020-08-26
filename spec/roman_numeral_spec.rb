@@ -33,4 +33,10 @@ describe 'RomanNumeral' do
             expect(roman_numeral.roman_num_arr).to eq(['M', 'V', 'C', 'I', 'I'])
         end
     end
+
+    describe 'it will perform the calculation correctly' do
+        it 'when we start with something basic' do
+            expect(RomanNumeral.calc('IV')).to eq(4)
+        end
+    end
 end
