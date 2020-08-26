@@ -1,5 +1,18 @@
 class RomanNumeral
     attr_reader :values, :roman_num_arr
+
+    def self.calc(roman_num)
+        new(roman_num).calc
+    end
+
+    def calc
+        @roman_num_arr.each_with_index do |val, index|
+            if @values[val.to_sym] < @values[@roman_num_arr[index + 1].to_sym]
+
+        end
+    end
+
+    private
     
     def initialize(roman_num_input)
         @roman_num_arr = roman_num_input.chars
