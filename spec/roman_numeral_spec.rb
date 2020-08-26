@@ -30,7 +30,7 @@ describe 'RomanNumeral' do
         it 'splits a different roman numeral correctly' do
             roman_numeral = RomanNumeral.new('MVCII')
 
-            expect(roman_numeral.roman_num_arr).to eq(['M', 'V, 'C', 'I', 'I'])
+            expect(roman_numeral.roman_num_arr).to eq(['M', 'V', 'C', 'I', 'I'])
         end
     end
 end
