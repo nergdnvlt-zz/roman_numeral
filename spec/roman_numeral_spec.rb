@@ -1,5 +1,4 @@
 require './roman_numeral.rb'
-require 'pry'
 
 describe 'RomanNumeral' do
     describe 'basic validations and setup' do
