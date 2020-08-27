@@ -43,25 +43,25 @@ describe 'RomanNumeral' do
             expect(RomanNumeral.calc('VX')).to eq(5)
         end
 
-    #     it 'when we start with something basic' do
-    #         expect(RomanNumeral.calc('VI')).to eq(6)
-    #     end
+        it 'when we start with something basic that adds up' do
+            expect(RomanNumeral.calc('VI')).to eq(6)
+        end
 
-    #     it 'adds alternate set of two digits' do
-    #         expect(RomanNumeral.calc('MD')).to eq(1500)
-    #     end
+        it 'adds alternate set of two digits that add up' do
+            expect(RomanNumeral.calc('MD')).to eq(1500)
+        end
 
-    #     it 'adds addtional alternate set of two digits' do
-    #         expect(RomanNumeral.calc('DL')).to eq(550)
-    #     end
+        it 'adds additional alternate set of two digits that add up again' do
+            expect(RomanNumeral.calc('DL')).to eq(550)
+        end
 
-    #     it 'adds two of the same consecutive numbers fine' do
-    #         expect(RomanNumeral.calc('DD')).to eq(1000)
-    #     end
+        it 'adds two of the same consecutive numbers fine' do
+            expect(RomanNumeral.calc('DD')).to eq(1000)
+        end
 
-    #     it 'adds alternate two of the same consecutive numbers fine' do
-    #         expect(RomanNumeral.calc('CC')).to eq(200)
-    #     end
+        it 'adds alternate two of the same consecutive numbers fine' do
+            expect(RomanNumeral.calc('CC')).to eq(200)
+        end
     end
 
     # describe 'start testing 3 digit calculations' do
