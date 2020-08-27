@@ -1,5 +1,5 @@
 class RomanNumeral
-    attr_reader :values, :roman_num_arr
+    attr_reader :values, :roman_num_arr, :final_value
 
     def self.calc(roman_num)
         new(roman_num).calc
@@ -7,15 +7,21 @@ class RomanNumeral
 
     def calc
         @roman_num_arr.each_with_index do |val, index|
-            if @values[val.to_sym] < @values[@roman_num_arr[index + 1].to_sym]
-                binding.pry
+            if index < @roman_num_arr.length - 1
+                if @values[val.to_sym] < @values[@roman_num_arr[index + 1].to_sym]
+                    value_1 = @values[val.to_sym]
+                    value_2 = @values[@roman_num_arr[index + 1].to_sym]
+                    @final_value += (value_2 - value_1 )
+                end
             end
         end
+        @final_value
     end
 
     private
     
     def initialize(roman_num_input)
+        @final_value = 0
         @roman_num_arr = roman_num_input.chars
         @values = { 
             'I': 1,

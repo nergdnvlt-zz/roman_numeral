@@ -38,5 +38,15 @@ describe 'RomanNumeral' do
         it 'when we start with something basic' do
             expect(RomanNumeral.calc('IV')).to eq(4)
         end
+
+        it 'when we alternate a simple subtraction' do
+            expect(RomanNumeral.calc('VX')).to eq(5)
+        end
+    end
+
+    describe 'it add bigger numbers fine' do
+        it 'when we start with something basic' do
+            expect(RomanNumeral.calc('VI')).to eq(6)
+        end
     end
 end
