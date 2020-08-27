@@ -8,7 +8,8 @@ class RomanNumeral
     def calc
         @roman_num_arr.each_with_index do |val, index|
             if @values[val.to_sym] < @values[@roman_num_arr[index + 1].to_sym]
-
+                binding.pry
+            end
         end
     end
 
