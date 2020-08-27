@@ -34,14 +34,14 @@ describe 'RomanNumeral' do
         end
     end
 
-    # describe 'beginning calculations with two digits' do
-    #     it 'when we start with something basic' do
-    #         expect(RomanNumeral.calc('IV')).to eq(4)
-    #     end
+    describe 'beginning calculations with two digits' do
+        it 'when we start with something basic' do
+            expect(RomanNumeral.calc('IV')).to eq(4)
+        end
 
-    #     it 'when we alternate a simple subtraction' do
-    #         expect(RomanNumeral.calc('VX')).to eq(5)
-    #     end
+        it 'when we alternate a simple subtraction' do
+            expect(RomanNumeral.calc('VX')).to eq(5)
+        end
 
     #     it 'when we start with something basic' do
     #         expect(RomanNumeral.calc('VI')).to eq(6)
@@ -62,11 +62,11 @@ describe 'RomanNumeral' do
     #     it 'adds alternate two of the same consecutive numbers fine' do
     #         expect(RomanNumeral.calc('CC')).to eq(200)
     #     end
-    # end
+    end
 
     # describe 'start testing 3 digit calculations' do
-        # it 'when we start with something basic' do
-        #     expect(RomanNumeral.calc('IIV')).to eq(3)
-        # end
+    #     it 'when we start with something basic' do
+    #         expect(RomanNumeral.calc('IIV')).to eq(3)
+    #     end
     # end
 end
