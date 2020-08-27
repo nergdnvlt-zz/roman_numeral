@@ -9,21 +9,30 @@ class RomanNumeral
         @roman_num_arr.each_with_index do |value_1, index|            
             if index < @roman_num_arr.length - 1
                 value_2 = @roman_num_arr[index + 1]
-                
-                if value_1 < value_2
-                    replace = value_2 - value_1        
-                    @roman_num_arr[index] = replace
-                    @roman_num_arr.delete_at(index + 1)
-                else
-                    replace = value_2 + value_1        
-                    @roman_num_arr[index] = replace
-                    @roman_num_arr.delete_at(index + 1)
-                end
+                recursive_eval(value_1, value_2, index)
+            else
+               if @roman_num_arr[0] < @roman_num_arr[1]
+                 return @roman_num_arr[1] - @roman_num_arr[0]
+               else
+                 return @roman_num_arr[0] + @roman_num_arr[1]
+               end
             end
-        end.sum
+        end[0]
     end
 
     private
+
+    def recursive_eval(value_1, value_2, index)
+        if value_1 < value_2
+            replace = value_2 - value_1        
+            @roman_num_arr[index] = replace
+            @roman_num_arr.delete_at(index + 1)
+        else
+            replace = value_2 + value_1        
+            @roman_num_arr[index] = replace
+            @roman_num_arr.delete_at(index + 1)
+        end
+    end
     
     def initialize(roman_num_input)
         @values = { 
