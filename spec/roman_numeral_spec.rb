@@ -24,49 +24,49 @@ describe 'RomanNumeral' do
         it 'splits the roman numeral correctly' do
             roman_numeral = RomanNumeral.new('II')
 
-            expect(roman_numeral.roman_num_arr).to eq(['I', 'I'])
+            expect(roman_numeral.roman_num_arr).to eq([1, 1])
         end
 
         it 'splits a different roman numeral correctly' do
             roman_numeral = RomanNumeral.new('MVCII')
 
-            expect(roman_numeral.roman_num_arr).to eq(['M', 'V', 'C', 'I', 'I'])
+            expect(roman_numeral.roman_num_arr).to eq([1000, 5, 100, 1, 1])
         end
     end
 
-    describe 'beginning calculations with two digits' do
-        it 'when we start with something basic' do
-            expect(RomanNumeral.calc('IV')).to eq(4)
-        end
+    # describe 'beginning calculations with two digits' do
+    #     it 'when we start with something basic' do
+    #         expect(RomanNumeral.calc('IV')).to eq(4)
+    #     end
 
-        it 'when we alternate a simple subtraction' do
-            expect(RomanNumeral.calc('VX')).to eq(5)
-        end
+    #     it 'when we alternate a simple subtraction' do
+    #         expect(RomanNumeral.calc('VX')).to eq(5)
+    #     end
 
-        it 'when we start with something basic' do
-            expect(RomanNumeral.calc('VI')).to eq(6)
-        end
+    #     it 'when we start with something basic' do
+    #         expect(RomanNumeral.calc('VI')).to eq(6)
+    #     end
 
-        it 'adds alternate set of two digits' do
-            expect(RomanNumeral.calc('MD')).to eq(1500)
-        end
+    #     it 'adds alternate set of two digits' do
+    #         expect(RomanNumeral.calc('MD')).to eq(1500)
+    #     end
 
-        it 'adds addtional alternate set of two digits' do
-            expect(RomanNumeral.calc('DL')).to eq(550)
-        end
+    #     it 'adds addtional alternate set of two digits' do
+    #         expect(RomanNumeral.calc('DL')).to eq(550)
+    #     end
 
-        it 'adds two of the same consecutive numbers fine' do
-            expect(RomanNumeral.calc('DD')).to eq(1000)
-        end
+    #     it 'adds two of the same consecutive numbers fine' do
+    #         expect(RomanNumeral.calc('DD')).to eq(1000)
+    #     end
 
-        it 'adds alternate two of the same consecutive numbers fine' do
-            expect(RomanNumeral.calc('CC')).to eq(200)
-        end
-    end
+    #     it 'adds alternate two of the same consecutive numbers fine' do
+    #         expect(RomanNumeral.calc('CC')).to eq(200)
+    #     end
+    # end
 
-    describe 'start testing 3 digit calculations' do
-        it 'when we start with something basic' do
-            expect(RomanNumeral.calc('IIV')).to eq(3)
-        end
-    end
+    # describe 'start testing 3 digit calculations' do
+        # it 'when we start with something basic' do
+        #     expect(RomanNumeral.calc('IIV')).to eq(3)
+        # end
+    # end
 end
