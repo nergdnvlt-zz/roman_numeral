@@ -6,16 +6,20 @@ class RomanNumeral
     end
 
     def calc
-        @roman_num_arr.each_with_index do |val, index|
+        sum = 0
+        @roman_num_arr.each_with_index do |val, index|            
             if index < @roman_num_arr.length - 1
-                if @values[val.to_sym] < @values[@roman_num_arr[index + 1].to_sym]
-                    value_1 = @values[val.to_sym]
-                    value_2 = @values[@roman_num_arr[index + 1].to_sym]
-                    @final_value += (value_2 - value_1 )
+                value_1 = @values[val.to_sym]
+                value_2 = @values[@roman_num_arr[index + 1].to_sym]
+
+                if value_1 < value_2
+                    sum += (value_2 - value_1 )
+                else
+                    sum += (value_1 + value_2)
                 end
             end
         end
-        @final_value
+        @final_value = sum
     end
 
     private
