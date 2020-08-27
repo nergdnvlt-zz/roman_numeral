@@ -43,10 +43,6 @@ class RomanNumeral
             end
         end
     end
-
-    def triple_eval
-
-    end
     
     def initialize(roman_num_input)
         @values = { 
