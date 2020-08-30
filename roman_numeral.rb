@@ -3,8 +3,7 @@ class RomanNumeral
         new(roman_num).calc
     end
 
-    def calc
-        binding.pry        
+    def calc      
         if @romans[0].class == Integer && @romans.length == 2
             eval_two_digit
         else
@@ -27,8 +26,7 @@ class RomanNumeral
             'M': 1000
         }
         @romans = convert(roman_num_input.chars)
-        binding.pry
-        # combine_arrays(seperate_arrays)
+        combine_arrays(seperate_arrays)
     end
 
     def eval_two_digit
@@ -36,17 +34,34 @@ class RomanNumeral
     end
 
     def combine_arrays(duplicate_array)
-        @romans.delete_if { |x| duplicate_array.flatten.include?(x) }
-        duplicate_array.each do |sub|
-            @romans << sub
+        # @romans.delete_if { |x| duplicate_array.flatten.include?(x) }
+        duplicate_array.each do |possible_deletions|
+            possible_deletions.each do |possible_del|
+                @romans.delete_at(@romans.index(possible_del) || @romans.length)
+            end
+            @romans.prepend(possible_deletions)
         end
+         
+        # binding.pry
+
+        # duplicate_array.each do |sub|
+        #     @romans.prepend(sub)
+        # end
     end
 
 
     def seperate_arrays
-        pull_first(find_dupes).zip(pull_last(find_dupes)).map do |selection|
+        sterilize(pull_first(find_dupes).zip(pull_last(find_dupes))).map do |selection|
             @romans.slice(selection[0]...(selection[1] + 1))
         end
+    end
+
+    def sterilize(grouped)
+        return grouped if grouped.length == 1 || grouped.empty?
+    
+        grouped.pop if grouped[1][0] < grouped[0][1]
+
+        grouped
     end
 
     def pull_first(duplicate_array)
@@ -62,8 +77,7 @@ class RomanNumeral
     end
 
     def find_dupes
-        binding.pry
-        @romans.group_by{ |e| e }.select { |k, v| v.size > 1 }.map(&:first)
+        (@romans.group_by{ |e| e }.select { |k, v| v.size > 1 }.map(&:first))
     end
 
     def convert_negatives(sub_group)
