@@ -1,48 +1,25 @@
 class RomanNumeral
     def self.calc(roman_num)
-        new(roman_num).calc
+        new(roman_num).calc.sum
     end
 
     def calc
-        @roman_num_arr.each_with_index do |value_1, index|       
-            if index < @roman_num_arr.length - 1
-                value_2 = @roman_num_arr[index + 1]
-                value_3 = @roman_num_arr[index + 2]
-                recursive_eval(value_1, value_2, value_3, index)
-            else
-               if @roman_num_arr[0] < @roman_num_arr[1]
-                 return @roman_num_arr[1] - @roman_num_arr[0]
-               else
-                 return @roman_num_arr.sum
-               end
+        @converted.each_with_index do |digit, index|
+            prior = @new_result[-1] if !@new_result.empty?
+            next_digit = @converted[index + 1] if @converted[index + 1]
+            if start?(index)
+                @new_result << digit
+            elsif subtract?(digit, prior)
+                @new_result.pop
+                @new_result << (digit - prior)
+            elsif eval_deeper?(digit, prior)
+                dive_deeper(digit, prior, next_digit)
             end
         end
-        if @roman_num_arr.length == 1
-            @roman_num_arr[0]
-        else
-            @roman_num_arr.sum
-        end
+        @new_result
     end
 
     private
-
-    def recursive_eval(value_1, value_2, value_3, index)
-        if value_3 && value_1 > value_2 && value_2 < value_3
-            @roman_num_arr.delete_at(index)
-            @roman_num_arr.delete_at(index + 1)
-            @roman_num_arr[index] = value_1 + (value_3 - value_2)
-        else
-            if value_1 < value_2
-                replace = value_2 - value_1        
-                @roman_num_arr[index] = replace
-                @roman_num_arr.delete_at(index + 1)
-            else
-                replace = value_2 + value_1        
-                @roman_num_arr[index] = replace
-                @roman_num_arr.delete_at(index + 1)
-            end
-        end
-    end
     
     def initialize(roman_num_input)
         @values = { 
@@ -54,12 +31,45 @@ class RomanNumeral
             'D': 500,
             'M': 1000
         }
-        @roman_num_arr = convert(roman_num_input.chars)
+        @converted = convert(roman_num_input.chars)
+        @new_result = []
     end
 
     def convert(initial_roman_numerals)
         initial_roman_numerals.map do |numeral|
             @values[numeral.to_sym]
         end
+    end
+
+    def start?(index)
+        index == 0
+    end
+
+    def subtract?(digit, prior)
+        digit > prior
+    end
+
+    def eval_deeper?(digit, prior)
+        digit <= prior
+    end
+
+    def dive_deeper(digit, prior, next_digit)
+        if same_digit?(next_digit, digit, prior)
+            @new_result.pop
+            @new_result << digit + prior
+        elsif add_to_stack?(next_digit, digit)
+            @new_result << digit
+        else
+            @new_result.pop
+            @new_result << digit + prior
+        end
+    end
+
+    def same_digit?(next_digit, digit, prior)
+        next_digit && digit < next_digit && digit == prior
+    end
+
+    def add_to_stack?(next_digit, digit)
+        next_digit && digit < next_digit
     end
 end
