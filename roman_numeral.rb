@@ -1,22 +1,10 @@
 class RomanNumeral
     def self.calc(roman_num)
-        new(roman_num).calc.sum
+        new(roman_num).calc
     end
 
     def calc
-        @converted.each_with_index do |digit, index|
-            prior = @new_result[-1] if !@new_result.empty?
-            next_digit = @converted[index + 1] if @converted[index + 1]
-            if start?(index)
-                @new_result << digit
-            elsif subtract?(digit, prior)
-                @new_result.pop
-                @new_result << (digit - prior)
-            elsif eval_deeper?(digit, prior)
-                dive_deeper(digit, prior, next_digit)
-            end
-        end
-        @new_result
+        @new_result.sum if result
     end
 
     private
@@ -33,6 +21,21 @@ class RomanNumeral
         }
         @converted = convert(roman_num_input.chars)
         @new_result = []
+    end
+
+    def result
+        @converted.each_with_index do |digit, index|
+            prior = @new_result[-1] if !@new_result.empty?
+            next_digit = @converted[index + 1] if @converted[index + 1]
+            if start?(index)
+                @new_result << digit
+            elsif subtract?(digit, prior)
+                @new_result.pop
+                @new_result << (digit - prior)
+            elsif eval_deeper?(digit, prior)
+                dive_deeper(digit, prior, next_digit)
+            end
+        end
     end
 
     def convert(initial_roman_numerals)
